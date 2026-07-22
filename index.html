@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vebliy — Health & Fitness Made Simple</title>
+<meta name="description" content="Vebliy is a health and fitness blog with easy articles on healthy foods, exercise, home remedies and daily wellness — with photos, benefits and precautions.">
+
+<!-- ============================================================
+     GOOGLE ADSENSE CODE YAHAN PASTE KARNA (approval milne ke baad)
+     AdSense ka <script> wala code is line ke neeche paste karo:
+============================================================ -->
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D1412; --surface:#151F1B; --surface2:#1B2823; --line:#26352E;
+  --text:#EAF1EA; --muted:#8FA69A; --mint:#7ED8A4; --gold:#E9C46A;
+  --radius:14px; --maxw:1100px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;font-weight:300;line-height:1.7;font-size:16px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(13,20,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;letter-spacing:.5px}
+.logo span{color:var(--mint)}
+.navlinks{display:flex;gap:22px;font-size:.85rem;color:var(--muted)}
+.navlinks a:hover{color:var(--mint)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 12px;font-size:1rem;cursor:pointer}
+.navright{display:flex;align-items:center;gap:12px}
+#google_translate_element .goog-te-gadget{font-family:'Sora',sans-serif!important;font-size:0!important;color:transparent!important}
+#google_translate_element .goog-te-combo{background:var(--surface2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:.8rem;font-family:'Sora',sans-serif;max-width:150px}
+body{top:0!important}
+.goog-te-banner-frame{display:none!important}
+@media(max-width:760px){
+  .navlinks{display:none;position:absolute;top:64px;left:0;right:0;background:var(--surface);flex-direction:column;padding:18px 20px;gap:14px;border-bottom:1px solid var(--line)}
+  .navlinks.open{display:flex}
+  .menu-btn{display:block}
+}
+
+/* hero */
+.hero{padding:60px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{color:var(--gold);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin-bottom:14px}
+.hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;max-width:720px}
+.hero h1 em{font-style:normal;color:var(--mint);border-bottom:3px solid var(--gold)}
+.hero p{color:var(--muted);max-width:560px;margin-top:16px}
+
+/* category chips */
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 8px}
+.chip{border:1px solid var(--line);border-radius:99px;padding:7px 16px;font-size:.8rem;color:var(--muted);cursor:pointer;background:none;font-family:inherit}
+.chip:hover{border-color:var(--mint);color:var(--mint)}
+.chip.active{background:var(--mint);color:#0D1412;border-color:var(--mint);font-weight:500}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;padding:34px 0 60px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--mint)}
+.card img{height:190px;width:100%;object-fit:cover}
+.card .pad{padding:18px 20px 22px}
+.card .cat{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.card h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;line-height:1.35;margin:8px 0 10px}
+.card p{color:var(--muted);font-size:.88rem}
+.card .date{color:var(--muted);font-size:.75rem;margin-top:14px;display:block}
+
+/* article page */
+.article{max-width:760px;margin:0 auto;padding:50px 20px 70px}
+.article .cat{color:var(--gold);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.article h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.2;margin:12px 0 10px}
+.article .meta{color:var(--muted);font-size:.83rem;margin-bottom:26px}
+.article .heroimg{border-radius:var(--radius);margin-bottom:30px;max-height:440px;width:100%;object-fit:cover}
+.article .intro{font-size:1.05rem;color:var(--text)}
+.article h2{font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;margin:40px 0 18px;color:var(--mint)}
+.benefit{display:flex;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px}
+.benefit .num{font-family:'Fraunces',serif;color:var(--gold);font-weight:700;font-size:1.4rem;line-height:1;min-width:34px}
+.benefit h4{font-weight:500;font-size:1rem;margin-bottom:5px}
+.benefit p{color:var(--muted);font-size:.9rem}
+.precaution{background:var(--surface2);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:10px;color:var(--muted);font-size:.92rem}
+.article .outro{margin-top:26px;color:var(--text)}
+.backlink{display:inline-block;margin-bottom:26px;color:var(--mint);font-size:.85rem}
+.adslot{margin:36px 0;text-align:center}
+
+/* static pages */
+.page{max-width:760px;margin:0 auto;padding:50px 20px 70px}
+.page h1{font-family:'Fraunces',serif;font-weight:600;font-size:2.1rem;margin-bottom:22px}
+.page h2{font-family:'Fraunces',serif;font-weight:600;font-size:1.25rem;margin:28px 0 10px;color:var(--mint)}
+.page p{color:var(--muted);margin-bottom:14px}
+.page strong{color:var(--text);font-weight:500}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 0 44px;margin-top:20px}
+.foot{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;color:var(--muted);font-size:.82rem}
+.foot .links{display:flex;gap:18px;flex-wrap:wrap}
+.foot a:hover{color:var(--mint)}
+.empty{color:var(--muted);padding:40px 0;text-align:center}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#/">Veb<span>liy</span></a>
+    <div class="navright">
+      <div id="google_translate_element"></div>
+      <button class="menu-btn" onclick="document.querySelector('.navlinks').classList.toggle('open')">☰</button>
+    </div>
+    <nav class="navlinks" onclick="this.classList.remove('open')">
+      <a href="#/">Home</a>
+      <a href="#/category/Fitness">Fitness</a>
+      <a href="#/category/Nutrition">Nutrition</a>
+      <a href="#/category/Home Remedies">Home Remedies</a>
+      <a href="#/category/Wellness">Wellness</a>
+      <a href="#/about">About</a>
+      <a href="#/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap foot">
+    <div>© <span id="year"></span> Vebliy · Health & Fitness Made Simple</div>
+    <div class="links">
+      <a href="#/about">About Us</a>
+      <a href="#/contact">Contact</a>
+      <a href="#/privacy">Privacy Policy</a>
+      <a href="#/disclaimer">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   NAYA ARTICLE AISE ADD KARO (GitHub par ye file kholo → Edit):
+   1. Neeche ARTICLES ke andar sabse UPAR ek naya block copy-paste karo
+   2. id: sabse alag/naya number do
+   3. image: imgbb.com par photo upload karke uska "Direct link" yahan daalo
+   4. benefits mein jitne chahe { t:"...", d:"..." } add karo
+   5. Commit changes dabao → Netlify apne aap site update kar dega
+============================================================ */
+
+const SITE_EMAIL = "YAHAN-APNI-EMAIL@gmail.com";  // <-- apni email likho
+
+const ARTICLES = [
+{
+  id: 3,
+  title: "10 Amazing Benefits of Drinking Warm Lemon Water Every Morning",
+  category: "Nutrition",
+  date: "22 July 2026",
+  image: "https://picsum.photos/seed/lemonwater/900/500",
+  excerpt: "A simple morning habit that supports digestion, hydration and skin health — here is what warm lemon water really does for your body.",
+  intro: "Starting your day with a glass of warm lemon water is one of the simplest health habits you can build. It takes less than two minutes, costs almost nothing, and gives your body a gentle start before tea, coffee or breakfast. Here are the main benefits, backed by everyday experience and basic nutrition science.",
+  benefits: [
+    { t:"Improves digestion", d:"Warm water with lemon stimulates the digestive system and helps your stomach get ready for the day, reducing bloating and heaviness." },
+    { t:"Keeps you hydrated", d:"After 7-8 hours of sleep your body is dehydrated. A big glass of water first thing in the morning restores fluid balance quickly." },
+    { t:"Rich in Vitamin C", d:"Lemons are a good source of Vitamin C, which supports your immune system and helps the body absorb iron from food." },
+    { t:"Supports clear skin", d:"Better hydration and Vitamin C both contribute to healthier, brighter looking skin over time." },
+    { t:"May help with weight management", d:"Replacing sugary morning drinks with lemon water cuts empty calories and can reduce unnecessary snacking." },
+    { t:"Freshens breath", d:"Lemon helps reduce the bacteria that cause morning bad breath." }
+  ],
+  precautions: [
+    "Lemon is acidic — rinse your mouth with plain water afterwards to protect tooth enamel.",
+    "If you have acidity or ulcer problems, start with very little lemon or consult your doctor.",
+    "Use warm water, not boiling hot water."
+  ],
+  outro: "Try this habit for 21 days and notice the difference in your digestion and energy. Small habits, done daily, create big results."
+},
+{
+  id: 2,
+  title: "7 Health Benefits of Walking 30 Minutes Daily",
+  category: "Fitness",
+  date: "22 July 2026",
+  image: "https://picsum.photos/seed/walking/900/500",
+  excerpt: "No gym, no equipment — just 30 minutes of walking a day can transform your heart health, mood and weight. Here's how.",
+  intro: "Walking is the most underrated exercise in the world. You don't need a gym membership, special equipment or training — just comfortable shoes and 30 minutes. Doctors around the world recommend daily walking for people of every age. Here is what it does for your body.",
+  benefits: [
+    { t:"Strengthens your heart", d:"Brisk walking raises your heart rate safely, improving circulation and lowering the risk of heart disease and high blood pressure." },
+    { t:"Helps control weight", d:"A 30-minute brisk walk burns roughly 120-180 calories. Done daily, it makes a real difference over months." },
+    { t:"Controls blood sugar", d:"A short walk after meals helps your muscles use glucose, which keeps blood sugar levels steadier — especially useful for people at risk of diabetes." },
+    { t:"Improves mood and reduces stress", d:"Walking releases endorphins and lowers cortisol. A walk outdoors in fresh air works even better." },
+    { t:"Strengthens bones and joints", d:"Walking is a weight-bearing exercise that keeps bones dense and knees moving without the impact of running." },
+    { t:"Better sleep", d:"People who walk daily fall asleep faster and enjoy deeper sleep." },
+    { t:"Boosts immunity", d:"Regular moderate exercise like walking is linked with fewer sick days and a stronger immune response." }
+  ],
+  precautions: [
+    "Wear proper walking shoes to avoid foot and knee pain.",
+    "Start with 10-15 minutes if you are a beginner, then increase slowly.",
+    "If you have any heart condition or joint problem, ask your doctor before starting."
+  ],
+  outro: "The best exercise is the one you actually do every day. Start today — even a 10 minute walk is better than none."
+},
+{
+  id: 1,
+  title: "Top 8 Benefits of Turmeric (Haldi) for Your Health",
+  category: "Home Remedies",
+  date: "22 July 2026",
+  image: "https://picsum.photos/seed/turmeric/900/500",
+  excerpt: "Turmeric has been used in Indian kitchens and home remedies for centuries. Modern science now supports many of its traditional benefits.",
+  intro: "Turmeric (haldi) is one of the oldest and most trusted ingredients in Indian homes — used in food, milk, and home remedies for generations. Its main active compound, curcumin, has been studied widely for its anti-inflammatory and antioxidant properties. Here are the top benefits of adding turmeric to your daily routine.",
+  benefits: [
+    { t:"Natural anti-inflammatory", d:"Curcumin helps reduce inflammation in the body, which is linked to joint pain and many chronic conditions." },
+    { t:"Powerful antioxidant", d:"Turmeric neutralises free radicals and supports the body's own antioxidant defences." },
+    { t:"Supports joint health", d:"Many people with mild joint stiffness find relief with regular turmeric intake, especially with warm milk." },
+    { t:"Good for skin", d:"Turmeric is traditionally used for glowing skin and to help minor cuts and marks heal." },
+    { t:"Supports immunity", d:"Haldi doodh (turmeric milk) is a classic remedy during cold and flu season." },
+    { t:"Aids digestion", d:"Turmeric stimulates bile production, which helps in digesting food better." },
+    { t:"Supports brain health", d:"Early research suggests curcumin may support memory and brain function." },
+    { t:"Heart-friendly", d:"Curcumin may improve the function of blood vessel linings, supporting healthy circulation." }
+  ],
+  precautions: [
+    "Turmeric works best with black pepper — pepper increases curcumin absorption greatly.",
+    "Very high doses can upset the stomach; 1/2 to 1 teaspoon a day in food is enough.",
+    "If you take blood-thinning medicine or have gallstones, consult your doctor first."
+  ],
+  outro: "You don't need expensive supplements — the haldi in your kitchen, used daily in food or warm milk, is a genuine gift for your health."
+}
+];
+
+/* ---------------- ROUTER (isko change karne ki zaroorat nahi) ---------------- */
+const app = document.getElementById('app');
+document.getElementById('year').textContent = new Date().getFullYear();
+
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+function cardHTML(a){
+  return `<a class="card" href="#/article/${a.id}">
+    <img src="${a.image}" alt="${esc(a.title)}" loading="lazy">
+    <div class="pad">
+      <span class="cat">${esc(a.category)}</span>
+      <h3>${esc(a.title)}</h3>
+      <p>${esc(a.excerpt)}</p>
+      <span class="date">${esc(a.date)}</span>
+    </div></a>`;
+}
+
+function renderHome(cat){
+  const cats = ['All', ...new Set(ARTICLES.map(a=>a.category))];
+  const list = (!cat||cat==='All') ? ARTICLES : ARTICLES.filter(a=>a.category===cat);
+  app.innerHTML = `
+  <section class="hero"><div class="wrap">
+    <div class="eyebrow">Health · Fitness · Wellness</div>
+    <h1>Your health journey, made <em>simple</em>.</h1>
+    <p>Easy articles on healthy foods, exercise, home remedies and daily habits — with clear benefits and precautions you can actually use.</p>
+    <div class="chips">${cats.map(c=>`<button class="chip ${((!cat&&c==='All')||cat===c)?'active':''}" onclick="location.hash='${c==='All'?'#/':'#/category/'+c}'">${c}</button>`).join('')}</div>
+  </div></section>
+  <div class="wrap"><div class="grid">${list.length?list.map(cardHTML).join(''):'<div class="empty">No articles in this category yet.</div>'}</div></div>`;
+  document.title = "Vebliy — Health & Fitness Made Simple";
+  window.scrollTo(0,0);
+}
+
+function renderArticle(id){
+  const a = ARTICLES.find(x=>String(x.id)===String(id));
+  if(!a){ renderHome(); return; }
+  app.innerHTML = `<article class="article">
+    <a class="backlink" href="#/">← Back to all articles</a>
+    <div class="cat">${esc(a.category)}</div>
+    <h1>${esc(a.title)}</h1>
+    <div class="meta">${esc(a.date)} · Vebliy Team</div>
+    <img class="heroimg" src="${a.image}" alt="${esc(a.title)}">
+    <p class="intro">${esc(a.intro)}</p>
+    <div class="adslot"><!-- AD SLOT: AdSense in-article ad code yahan paste kar sakte ho --></div>
+    <h2>Benefits</h2>
+    ${a.benefits.map((b,i)=>`<div class="benefit"><div class="num">${String(i+1).padStart(2,'0')}</div><div><h4>${esc(b.t)}</h4><p>${esc(b.d)}</p></div></div>`).join('')}
+    ${a.precautions&&a.precautions.length?`<h2>Precautions</h2>${a.precautions.map(p=>`<div class="precaution">${esc(p)}</div>`).join('')}`:''}
+    <p class="outro">${esc(a.outro||'')}</p>
+    <div class="adslot"><!-- AD SLOT --></div>
+  </article>`;
+  document.title = a.title + " — Vebliy";
+  window.scrollTo(0,0);
+}
+
+const PAGES = {
+about: `<h1>About Us</h1>
+<p>Welcome to <strong>Vebliy</strong>! We are a health and fitness blog dedicated to making wellness simple. Our articles cover fitness tips, healthy foods, home remedies, and daily wellness habits — explained in easy language with helpful photos, benefits, and precautions.</p>
+<p>Our mission is to help you build a healthier lifestyle with practical information you can actually use. Thank you for visiting Vebliy — your health journey starts here.</p>`,
+
+contact: `<h1>Contact Us</h1>
+<p>Have a question, suggestion, or feedback? We would love to hear from you.</p>
+<p>Email: <strong>${'EMAIL'}</strong></p>
+<p>We usually respond within 24-48 hours. You can also reach out for advertising or collaboration inquiries at the same email.</p>`,
+
+disclaimer: `<h1>Disclaimer</h1>
+<p>The content on Vebliy (www.vebliy.com) is for general informational and educational purposes only. It is not intended as medical advice, diagnosis, or treatment.</p>
+<p>Always consult a qualified doctor or healthcare professional before starting any diet, exercise program, supplement, or home remedy, especially if you have a medical condition, are pregnant, or take medication.</p>
+<p>We make no guarantees about the accuracy or completeness of the information, and we are not responsible for any loss or injury resulting from the use of this website. Use of this site is at your own risk.</p>`,
+
+privacy: `<h1>Privacy Policy</h1>
+<p>At Vebliy (www.vebliy.com), your privacy is important to us. This policy explains what information we collect and how we use it.</p>
+<h2>Information We Collect</h2>
+<p>Like most websites, we collect non-personal data such as browser type, device, pages visited, and time spent, through cookies and analytics tools. If you contact us by email, we collect your email address only to reply to you.</p>
+<h2>Cookies</h2>
+<p>We use cookies to improve your browsing experience. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this or other websites. You can opt out of personalized advertising by visiting Google Ads Settings.</p>
+<h2>Google AdSense</h2>
+<p>We may display ads served by Google AdSense. Google's use of advertising cookies enables it and its partners to serve ads based on your visits to this and other sites.</p>
+<h2>Third-Party Links</h2>
+<p>Our articles may contain links to other websites. We are not responsible for their content or privacy practices.</p>
+<h2>Consent</h2>
+<p>By using our website, you consent to this privacy policy.</p>
+<p>For any privacy-related questions, contact us at <strong>${'EMAIL'}</strong>.</p>
+<p>Last updated: July 2026</p>`
+};
+
+function renderPage(key){
+  if(!PAGES[key]){ renderHome(); return; }
+  app.innerHTML = `<div class="page">${PAGES[key].replaceAll('EMAIL', SITE_EMAIL)}</div>`;
+  document.title = key.charAt(0).toUpperCase()+key.slice(1) + " — Vebliy";
+  window.scrollTo(0,0);
+}
+
+function route(){
+  const h = decodeURIComponent(location.hash || '#/');
+  if(h.startsWith('#/article/')) renderArticle(h.split('/')[2]);
+  else if(h.startsWith('#/category/')) renderHome(h.split('/')[2]);
+  else if(h==='#/about') renderPage('about');
+  else if(h==='#/contact') renderPage('contact');
+  else if(h==='#/privacy') renderPage('privacy');
+  else if(h==='#/disclaimer') renderPage('disclaimer');
+  else renderHome();
+}
+window.addEventListener('hashchange', route);
+route();
+
+/* ---------- GOOGLE TRANSLATE (language dropdown) ---------- */
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({
+    pageLanguage:'en',
+    includedLanguages:'hi,bn,ta,te,mr,gu,kn,ml,pa,ur,en,es,fr,de,pt,ar,ru,ja,zh-CN,id',
+    layout:google.translate.TranslateElement.InlineLayout.SIMPLE
+  },'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
