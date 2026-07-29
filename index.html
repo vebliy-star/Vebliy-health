@@ -560,20 +560,24 @@ function changeLang(lang){
   }
 })();
 
-/* Google's script re-injects the top translate banner with inline styles on a timer,
-   so plain CSS isn't always enough — force it hidden repeatedly for a few seconds. */
+/* Google re-injects the top translate banner at random times (not just on load),
+   so we permanently watch the DOM and kill it the instant it appears. */
 (function forceHideGoogleBanner(){
-  let tries = 0;
-  const kill = setInterval(function(){
-    tries++;
+  function killBanner(){
     const frame = document.querySelector('.goog-te-banner-frame');
     if(frame){ frame.style.setProperty('display','none','important'); }
     document.body.style.setProperty('top','0px','important');
     document.documentElement.style.setProperty('top','0px','important');
     const tt = document.getElementById('goog-gt-tt');
     if(tt){ tt.style.setProperty('display','none','important'); }
-    if(tries > 40) clearInterval(kill); // stop after ~12 seconds
-  }, 300);
+    const balloon = document.querySelector('.goog-te-balloon-frame');
+    if(balloon){ balloon.style.setProperty('display','none','important'); }
+  }
+  killBanner();
+  const observer = new MutationObserver(killBanner);
+  observer.observe(document.documentElement, {childList:true, subtree:true, attributes:true, attributeFilter:['style','class']});
+  // also run on a slow safety-net timer forever, in case the observer misses something
+  setInterval(killBanner, 1000);
 })();
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
