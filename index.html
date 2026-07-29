@@ -171,28 +171,29 @@ footer{border-top:1px solid var(--line);padding:34px 0 44px;margin-top:20px}
   <div class="wrap nav">
     <a class="logo" href="#/">Veb<span>liy</span></a>
     <div class="navright">
-      <div class="lang-switch">
-        <select id="langSelect" onchange="changeLang(this.value)">
-          <option value="en">English</option>
-          <option value="hi">हिंदी</option>
-          <option value="bn">বাংলা</option>
-          <option value="ta">தமிழ்</option>
-          <option value="te">తెలుగు</option>
-          <option value="mr">मराठी</option>
-          <option value="gu">ગુજરાતી</option>
-          <option value="kn">ಕನ್ನಡ</option>
-          <option value="ml">മലയാളം</option>
-          <option value="pa">ਪੰਜਾਬੀ</option>
-          <option value="ur">اردو</option>
-          <option value="es">Español</option>
-          <option value="fr">Français</option>
-          <option value="de">Deutsch</option>
-          <option value="pt">Português</option>
-          <option value="ar">العربية</option>
-          <option value="ru">Русский</option>
-          <option value="ja">日本語</option>
-          <option value="zh-CN">中文</option>
-          <option value="id">Indonesia</option>
+      <!-- notranslate attribute zaroori hai taaki select options translate na ho -->
+      <div class="lang-switch notranslate" translate="no">
+        <select id="langSelect" class="notranslate" translate="no" onchange="changeLang(this.value)">
+          <option value="en" class="notranslate">English</option>
+          <option value="hi" class="notranslate">हिंदी</option>
+          <option value="bn" class="notranslate">বাংলা</option>
+          <option value="ta" class="notranslate">தமிழ்</option>
+          <option value="te" class="notranslate">తెలుగు</option>
+          <option value="mr" class="notranslate">मराठी</option>
+          <option value="gu" class="notranslate">ગુજરાતી</option>
+          <option value="kn" class="notranslate">ಕನ್ನಡ</option>
+          <option value="ml" class="notranslate">മലയാളം</option>
+          <option value="pa" class="notranslate">ਪੰਜਾਬੀ</option>
+          <option value="ur" class="notranslate">اردو</option>
+          <option value="es" class="notranslate">Español</option>
+          <option value="fr" class="notranslate">Français</option>
+          <option value="de" class="notranslate">Deutsch</option>
+          <option value="pt" class="notranslate">Português</option>
+          <option value="ar" class="notranslate">العربية</option>
+          <option value="ru" class="notranslate">Русский</option>
+          <option value="ja" class="notranslate">日本語</option>
+          <option value="zh-CN" class="notranslate">中文</option>
+          <option value="id" class="notranslate">Indonesia</option>
         </select>
       </div>
       <div id="google_translate_element"></div>
@@ -578,8 +579,16 @@ function googleTranslateElementInit(){
 
 function changeLang(lang){
   const val = lang==='en' ? '' : '/en/'+lang;
-  document.cookie = 'googtrans='+val+'; path=/';
-  document.cookie = 'googtrans='+val+'; domain='+location.hostname+'; path=/';
+  
+  // Clean up existing googtrans cookies first so switching is direct and smooth
+  document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain='+location.hostname+'; path=/;';
+  
+  if(val){
+    document.cookie = 'googtrans='+val+'; path=/';
+    document.cookie = 'googtrans='+val+'; domain='+location.hostname+'; path=/';
+  }
+  
   location.reload();
 }
 
