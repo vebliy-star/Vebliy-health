@@ -60,11 +60,29 @@ header{position:sticky;top:0;z-index:50;background:rgba(13,20,18,.92);backdrop-f
 }
 .lang-switch select:hover, .lang-switch select:focus{border-color:var(--mint)}
 .lang-switch select option{background:var(--surface2);color:var(--text)}
-body{top:0!important}
-.goog-te-banner-frame{display:none!important}
-.goog-tooltip, .goog-tooltip:hover{display:none!important;visibility:hidden!important}
-.goog-text-highlight{background:none!important;box-shadow:none!important}
-#goog-gt-tt, .goog-te-balloon-frame{display:none!important}
+
+/* Google Translate Top Banner Complete Hide */
+body {
+  top: 0px !important;
+  position: static !important;
+  margin-top: 0px !important;
+}
+iframe.goog-te-banner-frame,
+.goog-te-banner-frame,
+.VIpgJd-yA0Tdf-BvtA67-ibnAvb,
+.VIpgJd-yA0Tdf-BvtA67-aT2fad,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+  visibility: hidden !important;
+}
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
 @media(max-width:760px){
   .navlinks{display:none;position:absolute;top:64px;left:0;right:0;background:var(--surface);flex-direction:column;padding:18px 20px;gap:14px;border-bottom:1px solid var(--line)}
   .navlinks.open{display:flex}
@@ -540,7 +558,8 @@ function googleTranslateElementInit(){
   new google.translate.TranslateElement({
     pageLanguage:'en',
     includedLanguages:'hi,bn,ta,te,mr,gu,kn,ml,pa,ur,en,es,fr,de,pt,ar,ru,ja,zh-CN,id',
-    layout:google.translate.TranslateElement.InlineLayout.SIMPLE
+    layout:google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
   },'google_translate_element');
 }
 
@@ -565,10 +584,13 @@ function changeLang(lang){
    so we permanently watch the DOM and kill it the instant it appears. */
 (function forceHideGoogleBanner(){
   function killBanner(){
-    const frame = document.querySelector('.goog-te-banner-frame');
-    if(frame){ frame.style.setProperty('display','none','important'); }
+    const frames = document.querySelectorAll('.goog-te-banner-frame, .VIpgJd-yA0Tdf-BvtA67-ibnAvb, .VIpgJd-yA0Tdf-BvtA67-aT2fad, iframe[id=":1.container"]');
+    frames.forEach(f => f.style.setProperty('display','none','important'));
+    
     document.body.style.setProperty('top','0px','important');
+    document.body.style.setProperty('margin-top','0px','important');
     document.documentElement.style.setProperty('top','0px','important');
+    
     const tt = document.getElementById('goog-gt-tt');
     if(tt){ tt.style.setProperty('display','none','important'); }
     const balloon = document.querySelector('.goog-te-balloon-frame');
@@ -577,8 +599,7 @@ function changeLang(lang){
   killBanner();
   const observer = new MutationObserver(killBanner);
   observer.observe(document.documentElement, {childList:true, subtree:true, attributes:true, attributeFilter:['style','class']});
-  // also run on a slow safety-net timer forever, in case the observer misses something
-  setInterval(killBanner, 1000);
+  setInterval(killBanner, 500);
 })();
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
