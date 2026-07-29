@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vebliy — Health & Fitness Made Simple</title>
 <meta name="description" content="Vebliy is a health and fitness blog with easy articles on healthy foods, exercise, home remedies and daily wellness — with photos, benefits and precautions.">
@@ -558,6 +559,26 @@ function changeLang(lang){
       if(sel) sel.value = m[1];
     });
   }
+})();
+
+/* Google re-injects the top translate banner at random times (not just on load),
+   so we permanently watch the DOM and kill it the instant it appears. */
+(function forceHideGoogleBanner(){
+  function killBanner(){
+    const frame = document.querySelector('.goog-te-banner-frame');
+    if(frame){ frame.style.setProperty('display','none','important'); }
+    document.body.style.setProperty('top','0px','important');
+    document.documentElement.style.setProperty('top','0px','important');
+    const tt = document.getElementById('goog-gt-tt');
+    if(tt){ tt.style.setProperty('display','none','important'); }
+    const balloon = document.querySelector('.goog-te-balloon-frame');
+    if(balloon){ balloon.style.setProperty('display','none','important'); }
+  }
+  killBanner();
+  const observer = new MutationObserver(killBanner);
+  observer.observe(document.documentElement, {childList:true, subtree:true, attributes:true, attributeFilter:['style','class']});
+  // also run on a slow safety-net timer forever, in case the observer misses something
+  setInterval(killBanner, 1000);
 })();
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
